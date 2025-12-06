@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get a Free Quote | Top Notch Roofing</title>
+    <title>FAQ | Top Notch Roofing</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -14,6 +14,7 @@
             --accent-gold: #F4A261;
             --accent-hover: #e78c43;
             --text-light: #f1f5f9;
+            --text-gray: #cbd5e1;
             --header-height: 150px; /* UPDATED SIZE */
         }
 
@@ -23,10 +24,20 @@
             font-family: 'Open Sans', sans-serif;
             background-color: var(--primary-blue);
             color: var(--text-light);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; color: inherit; }
 
         /* --- HEADER --- */
         header {
@@ -43,7 +54,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* MENU TOGGLE */
         .menu-toggle {
             cursor: pointer;
             width: 35px;
@@ -69,7 +79,6 @@
         .menu-toggle.active .bar:nth-child(2) { opacity: 0; transform: translateX(-20px); }
         .menu-toggle.active .bar:nth-child(3) { top: 11px; transform: rotate(-45deg); background-color: var(--accent-gold); }
 
-        /* LOGO */
         .logo-container { text-align: center; }
         .logo-container img {
             height: 125px; /* UPDATED SIZE */
@@ -77,7 +86,6 @@
             display: block;
         }
 
-        /* RIGHT CTA */
         .header-right { text-align: right; }
         .cta-small {
             background-color: transparent;
@@ -123,88 +131,84 @@
         }
         .nav-content a:hover { color: var(--accent-gold); transform: scale(1.05); }
 
-        /* --- FORM CONTAINER --- */
-        .container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: calc(var(--header-height) + 40px) 20px 40px; 
-            background: linear-gradient(135deg, rgba(10, 26, 39, 0.9) 0%, rgba(10, 26, 39, 0.8) 100%), url('https://images.unsplash.com/photo-1632759145351-1d592919f522?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .form-wrapper {
-            background-color: white;
-            color: var(--primary-blue);
+        /* --- FAQ SECTION --- */
+        .page-wrapper {
+            padding-top: calc(var(--header-height) + 60px);
+            padding-bottom: 80px;
+            padding-left: 5%;
+            padding-right: 5%;
+            max-width: 900px;
+            margin: 0 auto;
             width: 100%;
-            max-width: 600px;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border-top: 5px solid var(--accent-gold);
-            animation: slideUp 0.8s ease;
         }
 
-        .form-header { text-align: center; margin-bottom: 30px; }
-        .form-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 2rem; margin-bottom: 10px; }
-        .form-header p { color: #666; }
+        .faq-header { text-align: center; margin-bottom: 50px; }
+        .faq-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .faq-header p { color: var(--text-gray); }
 
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
-        
-        input, select, textarea {
+        /* ACCORDION STYLES */
+        .accordion-item {
+            background-color: var(--darker-blue);
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.2);
-        }
-
-        textarea { resize: vertical; height: 100px; }
-        footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
-        .submit-btn {
-            background-color: var(--primary-blue);
-            color: white;
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            padding: 20px 25px;
+            text-align: left;
+            background: none;
             border: none;
-            border-radius: 4px;
+            outline: none;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: background 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
         }
-
-        .submit-btn:hover { background-color: var(--accent-gold); color: var(--primary-blue); }
         
-        /* Mobile */
-        @media (max-width: 768px) {
-            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; }
-            .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
-            .logo-container img { height: 70px; } 
-            .header-right { display: none; }
-            
-            .form-wrapper { padding: 30px 20px; }
-            .form-header h1 { font-size: 1.5rem; }
-            .nav-content a { font-size: 2rem; }
+        .accordion-header:hover { background-color: rgba(255,255,255,0.05); }
+        .accordion-header.active { color: var(--accent-gold); }
+        
+        /* The "+" Icon */
+        .icon { font-size: 1.5rem; transition: 0.3s; }
+        .accordion-header.active .icon { transform: rotate(45deg); }
+
+        .accordion-content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.2);
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-content p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        /* Reveal content class */
+        .accordion-content.show {
+            padding: 20px 25px;
+            max-height: 500px; /* Arbitrary large height */
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
+
+        @media (max-width: 768px) {
+            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; } /* Updated Height */
+            .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
+            .logo-container img { height: 70px; } /* Updated Size */
+            .header-right { display: none; }
+            .faq-header h1 { font-size: 2rem; }
+            .nav-content a { font-size: 2rem; }
         }
     </style>
 </head>
@@ -214,14 +218,14 @@
     <div id="myNav" class="nav-overlay">
         <div class="nav-content">
             <a href="index.html" onclick="toggleMenu()">Home</a>
-            <a href="about.html" onclick="toggleMenu()">About Us</a>
             <a href="services.html" onclick="toggleMenu()">Services</a>
             <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+            <a href="about.html" onclick="toggleMenu()">About Us</a>
             <a href="quote.html" onclick="toggleMenu()">Get Estimate</a> 
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
         <div class="menu-left">
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -230,60 +234,96 @@
                 <span class="bar"></span>
             </div>
         </div>
-
         <div class="logo-container">
             <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
         </div>
-
         <div class="header-right">
             <a href="tel:5555555555" class="cta-small">Call Us</a>
         </div>
     </header>
 
-    <div class="container">
-        <div class="form-wrapper">
-            <div class="form-header">
-                <h1>Get Your Free Estimate</h1>
-                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
-            </div>
-            
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="John Doe" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="service">Service Needed</label>
-                    <select id="service" name="service">
-                        <option value="replacement">Roof Replacement</option>
-                        <option value="repair">Repair / Leak</option>
-                        <option value="inspection">Free Estimate</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Project Details (Optional)</label>
-                    <textarea id="message" name="message" placeholder="Tell us briefly about your roof issues..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Request Quote</button>
-            </form>
+    <div class="page-wrapper">
+        <div class="faq-header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Answers to common questions about our roofing services.</p>
         </div>
+
+        <!-- FAQ ITEM 1 -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                Do you offer free estimates?
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>Placeholder</p>
+            </div>
+        </div>
+
+        <!-- FAQ ITEM 2 -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                Are you licensed and insured?
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>Placeholder</p>
+            </div>
+        </div>
+
+        <!-- FAQ ITEM 3 -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                How long does a roof replacement take?
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>Placeholder</p>
+            </div>
+        </div>
+
+        <!-- FAQ ITEM 4 -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                What types of roofing materials do you install?
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>Placeholder</p>
+            </div>
+        </div>
+
+        <!-- FAQ ITEM 5 -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                What do I do if my roof leaks during a storm?
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>Placeholder</p>
+            </div>
+        </div>
+
     </div>
+
     <footer><p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p><p>CA LIC. 1147189</p></footer>
+
     <script>
+        // MENU TOGGLE
         function toggleMenu() {
             var overlay = document.getElementById("myNav");
             var hamburger = document.querySelector(".menu-toggle");
             overlay.classList.toggle("open");
             hamburger.classList.toggle("active");
+        }
+
+        // ACCORDION TOGGLE
+        function toggleAccordion(element) {
+            // Toggle Active Class on Header (for color/icon rotation)
+            element.classList.toggle("active");
+
+            // Toggle Content Visibility
+            var content = element.nextElementSibling;
+            content.classList.toggle("show");
         }
     </script>
 </body>

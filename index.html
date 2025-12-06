@@ -14,8 +14,10 @@
             --accent-gold: #F4A261;
             --accent-hover: #e78c43;
             --text-light: #f1f5f9;
-            --text-gray: #cbd5e1;
-            --header-height: 110px; 
+            --text-gray: #cbd5e1; /* (Only in index.html) */
+            
+            /* CHANGE THIS VALUE */
+            --header-height: 150px; /* Was 110px */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -96,7 +98,7 @@
         /* LOGO */
         .logo-container { text-align: center; }
         .logo-container img {
-            height: 85px; /* MATCHING HOMEPAGE SIZE */
+            height: 125px;
             width: auto;
             display: block;
         }
@@ -251,7 +253,7 @@
                 transform: translateY(-50%); /* Centers it vertically */
             }
 
-            .logo-container img { height: 50px; }
+            .logo-container img { height: 70px; }
             
             .header-right { display: none; } /* Ensure right side is hidden */
 
@@ -274,8 +276,9 @@
     <div id="myNav" class="nav-overlay">
         <div class="nav-content">
             <a href="index.html" onclick="toggleMenu()">Home</a>
-            <a href="#" onclick="toggleMenu()">Services</a>
-            <a href="#" onclick="toggleMenu()">Process</a>
+            <a href="services.html" onclick="toggleMenu()">Services</a>
+            <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+            <a href="about.html" onclick="toggleMenu()">About Us</a>
             <a href="quote.html" onclick="toggleMenu()">Get Estimate</a> 
         </div>
     </div>
@@ -291,7 +294,7 @@
         </div>
 
         <div class="logo-container">
-            <img src="top_notch_logo_cropped.JPG" alt="Company Logo">
+            <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
         </div>
 
         <div class="header-right">
@@ -330,7 +333,7 @@
                     </svg>
                 </div>
                 <h3>Roof Replacement</h3>
-                <p>Time for a new roof? We install high-quality asphalt shingle systems designed to withstand the elements.</p>
+                <p>Time for a new roof? We install high-quality asphalt shingles, tile, metal, and single-ply roof systems designed to withstand the elements.</p>
             </div>
 
             <!-- SERVICE 2 -->
@@ -341,7 +344,7 @@
                     </svg>
                 </div>
                 <h3>Repairs & Maintenance</h3>
-                <p>We provide fast, reliable repairs for shingles, flashing, and storm damage leaks.</p>
+                <p>We provide fast, reliable repairs and maintenance for all roofing types, flashing, and storm damage leaks.</p>
             </div>
 
             <!-- SERVICE 3 -->
@@ -360,7 +363,9 @@
         </div>
     </section>
 
-    <footer><p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p></footer>
+    <footer><p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p>
+            <p>CA LIC. 1147189</p>
+    </footer>
 
     <script>
         function toggleMenu() {
