@@ -185,7 +185,15 @@
         .cta-btn:hover { background-color: var(--accent-hover); transform: translateY(-3px); }
 
         /* --- SECTIONS --- */
-        .stats { background-color: var(--darker-blue); padding: 60px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .stats { 
+            background-color: var(--darker-blue); 
+            padding: 60px 5%; 
+            display: flex; 
+            justify-content: space-around; 
+            flex-wrap: wrap; 
+            text-align: center; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+        }
         .stat-item h3 { font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 10px; }
         .stat-item p { color: var(--text-gray); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
 
@@ -199,7 +207,7 @@
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(10, 26, 39, 0.15); border-bottom: 3px solid var(--accent-gold); }
         .card h3 { margin-bottom: 15px; font-size: 1.4rem; }
         
-        /* UPDATED ICON STYLING */
+        /* ICON STYLING */
         .card-icon { 
             display: block;
             width: 50px;
@@ -208,7 +216,6 @@
             margin-bottom: 25px; 
         }
         
-        /* This ensures the SVGs scale perfectly inside the container */
         .card-icon svg {
             width: 100%;
             height: 100%;
@@ -221,13 +228,39 @@
 
         footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; }
 
+        /* --- MOBILE ADJUSTMENTS --- */
         @media (max-width: 768px) {
-            header { grid-template-columns: auto 1fr auto; padding: 0 20px; height: 80px; }
+            
+            /* 1. HEADER FIX: Use Flexbox + Absolute positioning for perfect centering */
+            header { 
+                display: flex; 
+                justify-content: center; /* Forces logo to center */
+                position: relative;
+                padding: 0 20px; 
+                height: 80px; 
+            }
+            
+            .menu-left {
+                position: absolute;
+                left: 20px; /* Pins hamburger to the left */
+                top: 50%;
+                transform: translateY(-50%); /* Centers it vertically */
+            }
+
             .logo-container img { height: 50px; }
+            
+            .header-right { display: none; } /* Ensure right side is hidden */
+
+            /* 2. STATS FIX: Stack vertically with gap */
+            .stats {
+                flex-direction: column; /* Stack them */
+                gap: 50px; /* Add space between them */
+            }
+
             .hero h1 { font-size: 2.5rem; }
             .nav-content a { font-size: 2rem; }
-            .cta-small { display: none; }
         }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -270,6 +303,7 @@
         </div>
     </section>
 
+    <!-- STATS SECTION -->
     <section class="stats">
         <div class="stat-item"><h3>10+ Years</h3><p>Industry Experience</p></div>
         <div class="stat-item"><h3>Licensed</h3><p>& Fully Insured</p></div>
@@ -283,7 +317,7 @@
         </div>
         <div class="grid">
             
-            <!-- SERVICE 1: Roof Replacement (House Icon) -->
+            <!-- SERVICE 1 -->
             <div class="card">
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24">
@@ -292,10 +326,10 @@
                     </svg>
                 </div>
                 <h3>Roof Replacement</h3>
-                <p>Time for a new roof? We install high-quality shingle systems designed to withstand the elements.</p>
+                <p>Time for a new roof? We install high-quality asphalt shingle systems designed to withstand the elements.</p>
             </div>
 
-            <!-- SERVICE 2: Repairs (Hammer Icon) -->
+            <!-- SERVICE 2 -->
             <div class="card">
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24">
@@ -306,7 +340,7 @@
                 <p>We provide fast, reliable repairs for shingles, flashing, and storm damage leaks.</p>
             </div>
 
-            <!-- SERVICE 3: Inspections (Clipboard Icon) -->
+            <!-- SERVICE 3 -->
             <div class="card">
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24">
@@ -333,5 +367,4 @@
         }
     </script>
 </body>
-    <!-- test -->
 </html>
