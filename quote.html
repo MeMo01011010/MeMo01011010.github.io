@@ -14,12 +14,12 @@
             --accent-gold: #F4A261;
             --accent-hover: #e78c43;
             --text-light: #f1f5f9;
-            --header-height: 150px; /* UPDATED SIZE */
+            --header-height: 150px; 
         }
 
         html {
-            overflow-y: scroll; /* Forces scrollbar track to always show */
-            }
+            overflow-y: scroll; 
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -76,7 +76,7 @@
         /* LOGO */
         .logo-container { text-align: center; }
         .logo-container img {
-            height: 125px; /* UPDATED SIZE */
+            height: 125px; 
             width: auto;
             display: block;
         }
@@ -159,7 +159,8 @@
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
         
-        input, select, textarea {
+        /* UPDATED: Added :not([type="radio"]) so radio buttons don't get full width */
+        input:not([type="radio"]), select, textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
@@ -173,6 +174,25 @@
             outline: none;
             border-color: var(--accent-gold);
             box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.2);
+        }
+
+        /* NEW STYLES FOR RADIO BUTTONS */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            font-weight: 400; /* Regular weight for options */
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        .radio-label input {
+            margin-right: 8px;
+            width: auto;
+            accent-color: var(--accent-gold);
         }
 
         textarea { resize: vertical; height: 100px; }
@@ -238,6 +258,7 @@
 
         <div class="logo-container">
             <a href="index.html" title="Home">
+            <!-- Ensure this image path is correct on your server -->
             <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
             </a>
         </div>
@@ -263,6 +284,31 @@
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                </div>
+
+                <!-- NEW EMAIL FIELD -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <!-- NEW CONTACT PREFERENCE RADIO BUTTONS -->
+                <div class="form-group">
+                    <label>Preferred Contact Method</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="contact_method" value="phone" checked> Phone
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="contact_method" value="email"> Email
+                        </label>
+                    </div>
+                </div>
+
+                <!-- NEW ADDRESS FIELD -->
+                <div class="form-group">
+                    <label for="address">Property Address</label>
+                    <input type="text" id="address" name="address" placeholder="1234 Main St, City, Zip" required>
                 </div>
 
                 <div class="form-group">
