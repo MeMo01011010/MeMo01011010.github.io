@@ -18,6 +18,10 @@
             --header-height: 150px; /* UPDATED SIZE */
         }
 
+            html {
+            overflow-y: scroll; /* Forces scrollbar track to always show */
+            }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -202,7 +206,10 @@
             .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
             .logo-container img { height: 70px; } /* Updated Size */
             .header-right { display: none; }
-            
+                .page-header, .page-wrapper {
+        padding-top: 30px; /* WAS calc(var(--header-height) + 60px) which was huge */
+        padding-bottom: 30px; /* Optional: tightens up the bottom space too */
+    }
             .about-grid { grid-template-columns: 1fr; }
             .about-image { height: 250px; margin-top: 30px; box-shadow: 10px 10px 0px var(--accent-gold); }
             .page-header h1 { font-size: 2rem; }
@@ -233,7 +240,9 @@
             </div>
         </div>
         <div class="logo-container">
+                       <a href="index.html" title="Home">
             <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
+            </a>
         </div>
         <div class="header-right">
             <a href="tel:5555555555" class="cta-small">Call Us</a>
