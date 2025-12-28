@@ -15,7 +15,7 @@
             --accent-hover: #e78c43;
             --text-light: #f1f5f9;
             --text-gray: #cbd5e1;
-            --header-height: 150px; /* UPDATED SIZE */
+            --header-height: 150px; 
         }
             html {
             overflow-y: scroll; /* Forces scrollbar track to always show */
@@ -84,7 +84,7 @@
 
         .logo-container { text-align: center; }
         .logo-container img {
-            height: 125px; /* UPDATED SIZE */
+            height: 125px; 
             width: auto;
             display: block;
         }
@@ -196,6 +196,17 @@
             margin-bottom: 20px;
             line-height: 1.7;
         }
+
+        .accordion-content ul {
+            list-style: disc; /* Or 'none' if you prefer custom styling */
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+        }
+        
+        .accordion-content ul li {
+            margin-bottom: 8px;
+        }
         
         /* Reveal content class */
         .accordion-content.show {
@@ -206,14 +217,14 @@
         footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
 
         @media (max-width: 768px) {
-            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; } /* Updated Height */
+            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; }
             .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
-            .logo-container img { height: 70px; } /* Updated Size */
+            .logo-container img { height: 70px; }
             .header-right { display: none; }
-                            .page-header, .page-wrapper {
-        padding-top: 30px; /* WAS calc(var(--header-height) + 60px) which was huge */
-        padding-bottom: 30px; /* Optional: tightens up the bottom space too */
-    }
+            .page-header, .page-wrapper {
+                padding-top: 30px; 
+                padding-bottom: 30px;
+            }
             .faq-header h1 { font-size: 2rem; }
             .nav-content a { font-size: 2rem; }
         }
@@ -242,8 +253,8 @@
             </div>
         </div>
         <div class="logo-container">
-                       <a href="index.html" title="Home">
-            <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
+            <a href="index.html" title="Home">
+                <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
             </a>
         </div>
         <div class="header-right">
@@ -264,7 +275,7 @@
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>Placeholder</p>
+                <p>Yes! At Top Notch Roofing, we believe that homeowners deserve honest and professional insight before making any decisions. That's why we offer 100% free estimates with no pushy sales tactics, ever. Our estimates are completed by the owner himself, so you get expert advice and an accurate quote without the pressure.</p>
             </div>
         </div>
 
@@ -275,7 +286,8 @@
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>Placeholder</p>
+                <p>Yes, we are licensed, bonded, and insured. Verification of our license can be found via the <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Contractors State License Board website</a>.
+                <br>CA License #: <strong style="color: var(--accent-gold);">1147189</strong></p>
             </div>
         </div>
 
@@ -286,7 +298,7 @@
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>Placeholder</p>
+                <p>Most residential roof installations take between 3 to 5 days, depending on the size and complexity of the project. Commercial projects may vary.</p>
             </div>
         </div>
 
@@ -297,18 +309,36 @@
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>Placeholder</p>
+                <p>We install the following roofing materials:</p>
+                <ul>
+                    <li>Asphalt Composition Shingles</li>
+                    <li>Concrete Tiles</li>
+                    <li>Metal Roofing</li>
+                    <li>Single Ply Roof Materials</li>
+                </ul>
+                <p>We are happy to help you decide what will best fit your needs and budget.</p>
             </div>
         </div>
 
-        <!-- FAQ ITEM 5 -->
+        <!-- FAQ ITEM 5 (New) -->
         <div class="accordion-item">
             <button class="accordion-header" onclick="toggleAccordion(this)">
-                What do I do if my roof leaks during a storm?
+                How do I know if my roof needs to be replaced or just repaired?
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>Placeholder</p>
+                <p>A full replacement is not always necessary. Key signs that might indicate a need for replacement include extensive shingle damage, active or recurring leaks, sagging, and visible wear across a large portion of the roof. A professional inspection can accurately determine if repairs or a full replacement are necessary for your specific situation.</p>
+            </div>
+        </div>
+
+        <!-- FAQ ITEM 6 (New) -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                Does Top Notch Roofing offer warranties on new roofs?
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>Yes, we offer comprehensive warranties on all new roofs. Our warranties are designed to give you peace of mind, ensuring that your investment is protected. We stand behind our work and the materials that we use, providing coverage that reflects our commitment to quality and customer satisfaction. For more details on our warranties and what they cover, feel free to contact us.</p>
             </div>
         </div>
 
@@ -332,6 +362,8 @@
 
             // Toggle Content Visibility
             var content = element.nextElementSibling;
+            // The existing max-height and padding transition works by setting max-height to 0 or a large value.
+            // When 'show' class is toggled, it applies the padding and allows the max-height transition to work.
             content.classList.toggle("show");
         }
     </script>

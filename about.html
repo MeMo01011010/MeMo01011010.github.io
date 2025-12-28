@@ -15,13 +15,10 @@
             --accent-hover: #e78c43;
             --text-light: #f1f5f9;
             --text-gray: #cbd5e1;
-            --header-height: 150px; /* UPDATED SIZE */
+            --header-height: 150px; 
         }
 
-            html {
-            overflow-y: scroll; /* Forces scrollbar track to always show */
-            }
-
+        html { overflow-y: scroll; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -32,7 +29,7 @@
             overflow-x: hidden; 
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             text-transform: uppercase;
@@ -85,7 +82,7 @@
         /* LOGO */
         .logo-container { text-align: center; }
         .logo-container img {
-            height: 125px; /* UPDATED SIZE */
+            height: 125px; 
             width: auto;
             display: block;
         }
@@ -154,23 +151,61 @@
         
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: 1.2fr 0.8fr; /* Text gets a bit more space */
+            gap: 60px;
+            align-items: start;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .about-text h2 { font-size: 2rem; margin-bottom: 20px; color: var(--primary-blue); }
+        .about-text h3 { font-size: 1.2rem; margin-top: 30px; margin-bottom: 10px; color: var(--primary-blue); }
         .about-text p { margin-bottom: 20px; color: #555; font-size: 1.05rem; }
         
+        /* New Styles for List and Quote */
+        .owner-quote {
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 20px;
+            background: #f9f9f9;
+            padding: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #444;
+        }
+        .owner-quote span {
+            display: block;
+            margin-top: 10px;
+            font-weight: 700;
+            font-style: normal;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+        }
+
+        .brand-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .brand-list li {
+            background: #eee;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
         .about-image {
-            height: 400px;
-            background-image: url('https://images.unsplash.com/photo-1623163155799-a9a77761099e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'); /* Placeholder Roof Image */
+            height: 500px;
+            background-image: url('https://images.unsplash.com/photo-1623163155799-a9a77761099e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'); 
             background-size: cover;
             background-position: center;
             border-radius: 8px;
-            box-shadow: 20px 20px 0px var(--accent-gold); /* Styling Accent */
+            box-shadow: 20px 20px 0px var(--accent-gold);
+            position: sticky;
+            top: 180px; /* Sticks image on scroll */
         }
 
         .values-section {
@@ -202,16 +237,13 @@
 
         /* --- MOBILE --- */
         @media (max-width: 768px) {
-            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; } /* Updated Height */
+            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; } 
             .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
-            .logo-container img { height: 70px; } /* Updated Size */
+            .logo-container img { height: 70px; } 
             .header-right { display: none; }
-                .page-header, .page-wrapper {
-        padding-top: 30px; /* WAS calc(var(--header-height) + 60px) which was huge */
-        padding-bottom: 30px; /* Optional: tightens up the bottom space too */
-    }
+            .page-header, .page-wrapper { padding-top: 30px; padding-bottom: 30px; }
             .about-grid { grid-template-columns: 1fr; }
-            .about-image { height: 250px; margin-top: 30px; box-shadow: 10px 10px 0px var(--accent-gold); }
+            .about-image { height: 250px; margin-top: 30px; box-shadow: 10px 10px 0px var(--accent-gold); position: static; }
             .page-header h1 { font-size: 2rem; }
             .nav-content a { font-size: 2rem; }
         }
@@ -240,8 +272,8 @@
             </div>
         </div>
         <div class="logo-container">
-                       <a href="index.html" title="Home">
-            <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
+            <a href="index.html" title="Home">
+                <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
             </a>
         </div>
         <div class="header-right">
@@ -260,10 +292,34 @@
         <div class="about-grid">
             <div class="about-text">
                 <h2>Committed to Excellence</h2>
-                <p>Placeholder.</p>
-                <p>Placeholder.</p>
-                <p><strong>Our Mission:</strong> To provide top-tier roofing solutions that ensure the safety and comfort of every family we serve.</p>
+                
+                <!-- Point 1 & 3: Intro and Services -->
+                <p>At Top Notch Roofing, we have over a decade of hands-on experience along with exceptional customer care to deliver lasting roofing solutions. We serve both residential and commercial clients, providing free estimates to make your experience convenient and stress-free.</p>
+                
+                <!-- Point 2: Personal Quote -->
+                <div class="owner-quote">
+                    "As someone born and raised right here in Redding, my roots in this community run deep. This isn't just where I work, it's the place I call home. That's why I am personally committed to providing the kind of honest, high-quality service our neighbors deserve. When you support Top Notch Roofing, you're supporting a local family dedicated to keeping our community thriving."
+                    <span>— Johnny Boster, Owner</span>
+                </div>
+
+                <!-- Point 4: Owner Direct -->
+                <h3>Hands-On Management</h3>
+                <p>All estimates and inspections are provided to you direct from the owner, Johnny Boster. This means you can be assured to receive accurate answers, timely turnaround, and expert advice from an experienced professional.</p>
+
+                <!-- Point 5: Brands -->
+                <h3>Brands We Trust</h3>
+                <p>We use high-quality well-known manufacturer brands with proven performance that you can trust:</p>
+                <ul class="brand-list">
+                    <li>Malarkey</li>
+                    <li>GAF</li>
+                    <li>CertainTeed</li>
+                </ul>
+
+                <!-- Point 6: Service Areas -->
+                <h3>Service Areas</h3>
+                <p>Based in Redding, CA, we proudly serve customers across Shasta, Tehama, Trinity, Siskiyou, and Butte County.</p>
             </div>
+            
             <div class="about-image"></div>
         </div>
     </section>
