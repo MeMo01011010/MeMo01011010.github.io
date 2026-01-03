@@ -197,15 +197,26 @@
             color: var(--primary-blue);
         }
 
+        .about-image-wrapper {
+                width: 100%;
+                margin: 0;
+                position: static;
+                text-align: center;
+        }
+
+        /* UPDATED IMAGE STYLES */
         .about-image {
-            height: 500px;
-            background-image: url('https://images.unsplash.com/photo-1623163155799-a9a77761099e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'); 
+            width: 100%;             /* Fills the column width */
+            aspect-ratio: 1 / 1;     /* Forces a perfect Square */
+            background-image: url('johhny.jpg'); 
             background-size: cover;
             background-position: center;
             border-radius: 8px;
+            /* Box shadow creates the solid block "L" effect behind the image */
             box-shadow: 20px 20px 0px var(--accent-gold);
             position: sticky;
             top: 180px; /* Sticks image on scroll */
+            margin-bottom: 40px;
         }
 
         .values-section {
@@ -235,6 +246,26 @@
 
         footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
 
+
+        .image-caption {
+                text-align: center;
+                font-family: 'Montserrat', sans-serif;
+                color: var(--primary-blue);
+                margin-top: 10px;
+                /* Shift caption slightly right to align visually with the shadowed image center */
+                padding-left: 30px; 
+        }
+        .image-caption strong {
+                display: block;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+        }
+        .image-caption span {
+                font-size: 0.95rem;
+                color: #666;
+                font-weight: 600;
+        }
+            
         /* --- MOBILE --- */
         @media (max-width: 768px) {
             header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; } 
@@ -243,7 +274,21 @@
             .header-right { display: none; }
             .page-header, .page-wrapper { padding-top: 30px; padding-bottom: 30px; }
             .about-grid { grid-template-columns: 1fr; }
-            .about-image { height: 250px; margin-top: 30px; box-shadow: 10px 10px 0px var(--accent-gold); position: static; }
+            
+            /* UPDATED MOBILE IMAGE STYLES */
+            .about-image { 
+                height: auto; 
+                aspect-ratio: 1 / 1;  /* Keep it square on mobile */
+                max-width: 350px;     /* Prevent it from being too huge on phones */
+                margin: 30px auto 0;  /* Center it */
+                box-shadow: 10px 10px 0px var(--accent-gold); 
+                position: static; 
+            }
+
+            .image-caption {
+                padding-left: 15px; /* Adjust for smaller shadow */
+            }
+
             .page-header h1 { font-size: 2rem; }
             .nav-content a { font-size: 2rem; }
         }
@@ -320,7 +365,15 @@
                 <p>Based in Redding, CA, we proudly serve customers across Shasta, Tehama, Trinity, Siskiyou, and Butte County.</p>
             </div>
             
-            <div class="about-image"></div>
+            <!-- IMAGE WRAPPER START -->
+            <div class="about-image-wrapper">
+                <div class="about-image"></div>
+                <div class="image-caption">
+                    <strong>Johnny Boster</strong>
+                    <span>Owner & Founder</span>
+                </div>
+            </div>
+            <!-- IMAGE WRAPPER END -->
         </div>
     </section>
 
