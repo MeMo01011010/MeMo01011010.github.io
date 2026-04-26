@@ -415,7 +415,7 @@
         <!-- Background Video -->
         <!-- 'playsinline' is crucial for mobile devices so it doesn't open in fullscreen automatically -->
         <video autoplay loop muted playsinline class="hero-video">
-            <source src="roof_vid_hor1_cut_audio_removed.mp4" type="video/mp4">
+            <source src="roof_ios.mp4" type="video/mp4">
             <!-- Add an .mp4 fallback if you have one, for maximum browser compatibility -->
             <!-- <source src="your-video-filename.mp4" type="video/mp4"> -->
             Your browser does not support the video tag.
@@ -558,6 +558,29 @@
     </footer>
 
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const video = document.querySelector(".hero-video");
+
+        if (!video) return;
+
+        video.muted = true;
+        video.playsInline = true;
+
+        const tryPlay = () => {
+            video.play().catch(() => {
+                // retry on first user interaction
+                const retry = () => {
+                    video.play();
+                    document.removeEventListener("touchstart", retry);
+                };
+                document.addEventListener("touchstart", retry);
+            });
+        };
+
+        // small delay helps iOS attach video properly
+        setTimeout(tryPlay, 200);
+    });
         // MENU TOGGLE
         function toggleMenu() {
             var overlay = document.getElementById("myNav");
