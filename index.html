@@ -156,7 +156,8 @@
         /* --- HERO --- */
         .hero {
             position: relative; /* Needed to contain the absolute video */
-            height: 100vh;
+            min-height: 100vh;
+            height: -webkit-fill-available;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -164,6 +165,7 @@
             padding: 0 20px;
             padding-top: var(--header-height); 
             overflow: hidden; /* Prevents video from overflowing the section */
+            transform: translateZ(0);
         }
         
         .hero-video {
@@ -174,6 +176,8 @@
             height: 100%;
             object-fit: cover; /* Ensures the video fills the screen without stretching */
             z-index: -2; /* Keeps video at the very back */
+            opacity: 1;
+            visibility: visible;
         }
 
         .hero-overlay {
@@ -559,28 +563,44 @@
 
     <script>
 
-        document.addEventListener("DOMContentLoaded", function () {
-        const video = document.querySelector(".hero-video");
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.querySelector(".hero-video");
+            if (!video) return;
 
-        if (!video) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => {});
+                    }
+                });
+            }, { threshold: 0.3 });
 
-        video.muted = true;
-        video.playsInline = true;
+            observer.observe(video);
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.querySelector(".hero-video");
+            if (!video) return;
 
-        const tryPlay = () => {
-            video.play().catch(() => {
-                // retry on first user interaction
-                const retry = () => {
-                    video.play();
-                    document.removeEventListener("touchstart", retry);
-                };
-                document.addEventListener("touchstart", retry);
+            video.muted = true;
+            video.setAttribute("playsinline", "");
+            video.setAttribute("webkit-playsinline", "");
+
+            const tryPlay = async () => {
+                try {
+                    await video.play();
+                } catch (e) {
+                    // retry on user interaction fallback
+                }
+            };
+
+            // Wait until video can actually play
+            video.addEventListener("canplay", () => {
+                tryPlay();
             });
-        };
 
-        // small delay helps iOS attach video properly
-        setTimeout(tryPlay, 200);
-    });
+            // Safety fallback (iOS sometimes never fires canplay reliably)
+            setTimeout(tryPlay, 1000);
+        });
         // MENU TOGGLE
         function toggleMenu() {
             var overlay = document.getElementById("myNav");
