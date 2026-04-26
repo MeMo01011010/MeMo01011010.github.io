@@ -163,7 +163,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 20px;
-            padding-top: var(--header-height); 
+            padding-top: 0; 
             overflow: hidden; /* Prevents video from overflowing the section */
             transform: translateZ(0);
         }
@@ -178,6 +178,8 @@
             z-index: -2; /* Keeps video at the very back */
             opacity: 1;
             visibility: visible;
+            transform: translate3d(0,0,0);
+            will-change: transform;
         }
 
         .hero-overlay {
@@ -195,6 +197,7 @@
             z-index: 1;
             max-width: 900px; 
             animation: fadeIn 1.5s ease; 
+            margin-top: 150px;
         }
 
         .hero h1 { font-size: 4rem; margin-bottom: 25px; line-height: 1.1; }
@@ -567,39 +570,27 @@
             const video = document.querySelector(".hero-video");
             if (!video) return;
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        video.play().catch(() => {});
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            observer.observe(video);
-        });
-        document.addEventListener("DOMContentLoaded", () => {
-            const video = document.querySelector(".hero-video");
-            if (!video) return;
-
             video.muted = true;
+            video.playsInline = true;
             video.setAttribute("playsinline", "");
             video.setAttribute("webkit-playsinline", "");
 
-            const tryPlay = async () => {
-                try {
-                    await video.play();
-                } catch (e) {
-                    // retry on user interaction fallback
+            const startVideo = () => {
+                const p = video.play();
+                if (p !== undefined) {
+                    p.catch(() => {});
                 }
             };
 
-            // Wait until video can actually play
-            video.addEventListener("canplay", () => {
-                tryPlay();
-            });
+            // iOS-safe trigger chain (only ONE path)
+            if (video.readyState >= 3) {
+                startVideo();
+            } else {
+                video.addEventListener("loadeddata", startVideo, { once: true });
+            }
 
-            // Safety fallback (iOS sometimes never fires canplay reliably)
-            setTimeout(tryPlay, 1000);
+            // ultimate fallback (iOS sometimes ignores events entirely)
+            setTimeout(startVideo, 1200);
         });
         // MENU TOGGLE
         function toggleMenu() {
