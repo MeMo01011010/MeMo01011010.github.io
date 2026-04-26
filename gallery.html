@@ -251,10 +251,26 @@
         .footer-socials svg { width: 28px; height: 28px; }
 
         @media (max-width: 768px) {
-            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; }
+            header { 
+                display: flex; 
+                justify-content: center;
+                position: relative;
+                padding: 0 20px; 
+                height: 80px; 
+            }
             .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
             .logo-container img { height: 70px; }
-            .header-right { display: none; }
+            .header-right { 
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            } 
+            .cta-small {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
             .page-header, .page-wrapper { padding-top: 30px; padding-bottom: 30px; }
             .gallery-header h1 { font-size: 2rem; }
             .nav-content a { font-size: 2rem; }
