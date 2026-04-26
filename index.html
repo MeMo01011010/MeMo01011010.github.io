@@ -14,15 +14,13 @@
             --accent-gold: #F4A261;
             --accent-hover: #e78c43;
             --text-light: #f1f5f9;
-            --text-gray: #cbd5e1; /* (Only in index.html) */
-            
-            /* CHANGE THIS VALUE */
-            --header-height: 150px; /* Was 110px */
+            --text-gray: #cbd5e1;
+            --header-height: 150px;
         }
 
         html {
-            overflow-y: scroll; /* Forces scrollbar track to always show */
-            }
+            overflow-y: scroll;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -58,7 +56,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* HAMBURGER / X BUTTON STYLES */
         .menu-toggle {
             cursor: pointer;
             width: 35px;
@@ -81,7 +78,6 @@
         .bar:nth-child(2) { top: 11px; }
         .bar:nth-child(3) { top: 22px; }
         
-        /* THE "X" ANIMATION */
         .menu-toggle.active .bar:nth-child(1) {
             top: 11px;
             transform: rotate(45deg);
@@ -99,7 +95,6 @@
             background-color: var(--accent-gold);
         }
 
-        /* LOGO */
         .logo-container { text-align: center; }
         .logo-container img {
             height: 125px;
@@ -107,7 +102,6 @@
             display: block;
         }
 
-        /* RIGHT CTA */
         .header-right { text-align: right; }
         .cta-small {
             background-color: transparent;
@@ -161,6 +155,7 @@
 
         /* --- HERO --- */
         .hero {
+            position: relative; /* Needed to contain the absolute video */
             height: 100vh;
             display: flex;
             align-items: center;
@@ -168,11 +163,36 @@
             text-align: center;
             padding: 0 20px;
             padding-top: var(--header-height); 
-            background: linear-gradient(135deg, rgba(10, 26, 39, 0.9) 0%, rgba(10, 26, 39, 0.6) 100%), url('https://images.unsplash.com/photo-1632759145351-1d592919f522?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
+            overflow: hidden; /* Prevents video from overflowing the section */
         }
-        .hero-content { max-width: 900px; animation: fadeIn 1.5s ease; }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video fills the screen without stretching */
+            z-index: -2; /* Keeps video at the very back */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 26, 39, 0.9) 0%, rgba(10, 26, 39, 0.6) 100%);
+            z-index: -1; /* Sits between the video and the text */
+        }
+
+        .hero-content { 
+            position: relative; /* Keeps the text in front of the video/overlay */
+            z-index: 1;
+            max-width: 900px; 
+            animation: fadeIn 1.5s ease; 
+        }
+
         .hero h1 { font-size: 4rem; margin-bottom: 25px; line-height: 1.1; }
         .hero h1 span {
             color: var(--accent-gold);
@@ -193,7 +213,6 @@
             display: inline-block;
         }
         .cta-btn:hover { background-color: var(--accent-hover); transform: translateY(-3px); }
-
         /* --- SECTIONS --- */
         .stats { 
             background-color: var(--darker-blue); 
@@ -217,7 +236,6 @@
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(10, 26, 39, 0.15); border-bottom: 3px solid var(--accent-gold); }
         .card h3 { margin-bottom: 15px; font-size: 1.4rem; }
         
-        /* ICON STYLING */
         .card-icon { 
             display: block;
             width: 50px;
@@ -236,39 +254,123 @@
             stroke-linejoin: round;
         }
 
-        footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; }
+        /* --- REVIEWS CAROUSEL --- */
+        .reviews-section {
+            background-color: var(--darker-blue);
+            padding: 80px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .reviews-section .section-header h2 {
+            color: var(--text-light);
+        }
+        .carousel-container {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px 40px;
+        }
+        .review-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .stars {
+            color: #FFD700;
+            font-size: 1.8rem;
+            letter-spacing: 5px;
+        }
+
+        /* --- CERTIFICATIONS --- */
+        .certifications {
+            background-color: white;
+            padding: 20px 5%;
+            text-align: center;
+        }
+        .certifications img {
+            max-height: 160px;
+            width: auto;
+            display: inline-block;
+        }
+
+        /* --- FOOTER --- */
+        footer { 
+            background-color: black; 
+            padding: 40px 5%; 
+            color: var(--text-gray); 
+            font-size: 0.9rem; 
+            margin-top: auto;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            gap: 150px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .footer-text { text-align: left; }
+        .footer-text p { margin-bottom: 5px; }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { 
+            color: var(--text-gray); 
+            transition: color 0.3s; 
+            display: flex; 
+            align-items: center; 
+        }
+        .footer-socials a:hover { color: var(--accent-gold); }
+        .footer-socials svg { width: 28px; height: 28px; }
 
         /* --- MOBILE ADJUSTMENTS --- */
         @media (max-width: 768px) {
-            
-            /* 1. HEADER FIX: Use Flexbox + Absolute positioning for perfect centering */
             header { 
                 display: flex; 
-                justify-content: center; /* Forces logo to center */
+                justify-content: center;
                 position: relative;
                 padding: 0 20px; 
                 height: 80px; 
             }
-            
             .menu-left {
                 position: absolute;
-                left: 20px; /* Pins hamburger to the left */
+                left: 20px; 
                 top: 50%;
-                transform: translateY(-50%); /* Centers it vertically */
+                transform: translateY(-50%); 
             }
-
             .logo-container img { height: 70px; }
+            .header-right { 
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            } 
             
-            .header-right { display: none; } /* Ensure right side is hidden */
-
-            /* 2. STATS FIX: Stack vertically with gap */
-            .stats {
-                flex-direction: column; /* Stack them */
-                gap: 50px; /* Add space between them */
+            .cta-small {
+                padding: 8px 12px;
+                font-size: 0.75rem;
             }
-
+            .stats {
+                flex-direction: column; 
+                gap: 50px; 
+            }
             .hero h1 { font-size: 2.5rem; }
             .nav-content a { font-size: 2rem; }
+            .carousel-slide { padding: 10px 15px; }
+            .review-text { font-size: 1rem; }
+            .footer-content { flex-direction: column; text-align: center; gap: 20px; }
+            .footer-text { text-align: center; }
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -281,6 +383,7 @@
         <div class="nav-content">
             <a href="index.html" onclick="toggleMenu()">Home</a>
             <a href="services.html" onclick="toggleMenu()">Services</a>
+            <a href="gallery.html" onclick="toggleMenu()">Project Gallery</a>
             <a href="faq.html" onclick="toggleMenu()">FAQ</a>
             <a href="about.html" onclick="toggleMenu()">About Us</a>
             <a href="quote.html" onclick="toggleMenu()">Get Estimate</a> 
@@ -298,17 +401,29 @@
         </div>
 
         <div class="logo-container">
-                        <a href="index.html" title="Home">
-            <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
+            <a href="index.html" title="Home">
+                <img src="Top_notch_transparent_white_cropped.png" alt="Company Logo">
             </a>
         </div>
 
         <div class="header-right">
-            <a href="tel:5555555555" class="cta-small">Call Us</a>
+            <a href="tel:+15302768423" class="cta-small">Call Us</a>
         </div>
     </header>
 
     <section class="hero">
+        <!-- Background Video -->
+        <!-- 'playsinline' is crucial for mobile devices so it doesn't open in fullscreen automatically -->
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="roof_vid_hor1_cut.mp4" type="video/mp4">
+            <!-- Add an .mp4 fallback if you have one, for maximum browser compatibility -->
+            <!-- <source src="your-video-filename.mp4" type="video/mp4"> -->
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Dark gradient overlay to keep text readable -->
+        <div class="hero-overlay"></div>
+
         <div class="hero-content">
             <h1>Expert Roofing. <br><span>Unmatched Quality.</span></h1>
             <p>We provide premium residential roofing, repairs, and inspections. Licensed, insured, and dedicated to protecting your home.</p>
@@ -375,16 +490,92 @@
         </div>
     </section>
 
-    <footer><p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p>
-            <p>CA LIC. 1147189</p>
+    <!-- REVIEWS SECTION -->
+    <section class="reviews-section">
+        <div class="section-header">
+            <h2>What Our Customers Say</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                
+                <div class="carousel-slide">
+                    <p class="review-text">"The name says it all . Within two days of me calling I had a price and time line for the repair of my leaking roof. Johnny showed up as promised and completed the required work. He was timely, efficient and he cleaned up after the project was finished. I recommend this company for all your roofing projects. Professional, reasonable pricing what more could you ask for."</p>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <p class="review-text">"Johnny and his crew live up to their name. I requested a bid for my roof through their website. I received a call from Ashley within an hour and met with Johnny a day later. The bid price was I incredible. The crew was on-time, professional and left my property clean and tidy. I recommend Top Notch Roofing without hesitation."</p>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <p class="review-text">"Johnny Boster was very friendly, caring, professional and he kept me informed. My roof looks beautiful and his price was very reasonable. Thanks for the timing of your work, Johnny. The day after you finished we got rain and I didn't need to worry about the two roof leaks."</p>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <p class="review-text">"I used Top Notch Roofing recently and had the absolute best experience. Not only were they very well priced, but the employees were kind and professional. I highly recommend doing business with them. They excel at communicating any setbacks as well as returning my phone calls almost immediately. They were able to provide me with any information I needed so quickly. Very impressed!!!!"</p>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <p class="review-text">"Responded promptly. Showed up on time. Stuck to estimate. Got job done in record time. I would surely recommend this company."</p>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS / PARTNERS -->
+    <section class="certifications">
+        <img src="Malarky_cert.png" alt="Malarkey Certified Pro">
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p>
+                <p>CA LIC. 1147189</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/topnotchredding?mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/topnotchredding?igsh=NTc4MTIwNjQ2YQ==" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script>
+        // MENU TOGGLE
         function toggleMenu() {
             var overlay = document.getElementById("myNav");
             var hamburger = document.querySelector(".menu-toggle");
             overlay.classList.toggle("open");
             hamburger.classList.toggle("active");
+        }
+
+        // REVIEWS CAROUSEL
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+
+        if (slides.length > 0) {
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }, 5000);
         }
     </script>
 </body>

@@ -243,8 +243,34 @@
         .value-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
         .value-card h3 { color: var(--accent-gold); margin-bottom: 15px; font-size: 1.2rem; }
         .value-card p { color: var(--text-gray); font-size: 0.95rem; }
-
-        footer { background-color: black; padding: 50px 5%; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
+        /* --- FOOTER --- */
+        footer { 
+            background-color: black; 
+            padding: 40px 5%; 
+            color: var(--text-gray); 
+            font-size: 0.9rem; 
+            margin-top: auto;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            gap: 150px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .footer-text { text-align: left; }
+        .footer-text p { margin-bottom: 5px; }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { 
+            color: var(--text-gray); 
+            transition: color 0.3s; 
+            display: flex; 
+            align-items: center; 
+        }
+        .footer-socials a:hover { color: var(--accent-gold); }
+        .footer-socials svg { width: 28px; height: 28px; }
 
 
         .image-caption {
@@ -265,32 +291,62 @@
                 color: #666;
                 font-weight: 600;
         }
+
+
             
         /* --- MOBILE --- */
-        @media (max-width: 768px) {
-            header { display: flex; justify-content: center; position: relative; padding: 0 20px; height: 100px; } 
-            .menu-left { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 768px) {
+            header { 
+                display: flex; 
+                justify-content: center; 
+                position: relative; 
+                padding: 0 20px; 
+                height: 100px; 
+            } 
+            .menu-left { 
+                position: absolute; 
+                left: 20px; 
+                top: 50%; 
+                transform: translateY(-50%); 
+            }
             .logo-container img { height: 70px; } 
-            .header-right { display: none; }
+            
+            /* UPDATED: Displays the button and positions it on the right */
+            .header-right { 
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            /* OPTIONAL: Slightly reduces button size for mobile */
+            .cta-small {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+
             .page-header, .page-wrapper { padding-top: 30px; padding-bottom: 30px; }
             .about-grid { grid-template-columns: 1fr; }
             
-            /* UPDATED MOBILE IMAGE STYLES */
+            /* PRESERVED MOBILE IMAGE STYLES */
             .about-image { 
                 height: auto; 
-                aspect-ratio: 1 / 1;  /* Keep it square on mobile */
-                max-width: 350px;     /* Prevent it from being too huge on phones */
-                margin: 30px auto 0;  /* Center it */
+                aspect-ratio: 1 / 1;  
+                max-width: 350px;     
+                margin: 30px auto 0;  
                 box-shadow: 10px 10px 0px var(--accent-gold); 
                 position: static; 
             }
 
             .image-caption {
-                padding-left: 15px; /* Adjust for smaller shadow */
+                padding-left: 15px; 
             }
 
             .page-header h1 { font-size: 2rem; }
             .nav-content a { font-size: 2rem; }
+            .footer-content { flex-direction: column; text-align: center; gap: 20px; }
+            .footer-text { text-align: center; }
         }
     </style>
 </head>
@@ -322,7 +378,7 @@
             </a>
         </div>
         <div class="header-right">
-            <a href="tel:5555555555" class="cta-small">Call Us</a>
+            <a href="tel:+15302768423" class="cta-small">Call Us</a>
         </div>
     </header>
 
@@ -396,8 +452,29 @@
         </div>
     </section>
 
-    <footer><p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p><p>CA LIC. 1147189</p></footer>
-
+       <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2025 Top Notch Roofing. All Rights Reserved.</p>
+                <p>CA LIC. 1147189</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/topnotchredding?mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/topnotchredding?igsh=NTc4MTIwNjQ2YQ==" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
     <script>
         function toggleMenu() {
             var overlay = document.getElementById("myNav");
